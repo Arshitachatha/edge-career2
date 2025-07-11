@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { BUTTONS_MENUS } from "@/lib/constants";
 import { Card, CardContent } from "@/components/ui/card";
 import HeroSection from "@/components/hero";
-import SplitText from "../components/ui/blocks/ShinyText/SplitText";
-import ShinyText from "../components/ui/blocks/ShinyText/ShinyText";
+import SplitText from "./components/SplitText";
+import ShinyText from "./components/ShinyText";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import ScrollToTop from "@/components/ScrollToTop";
 import {
