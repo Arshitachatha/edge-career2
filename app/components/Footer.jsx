@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
+const currentYear = new Date().getFullYear();
 
 export default function Footer() {
   return (
@@ -93,7 +94,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-gray-500 dark:text-gray-400 text-xs mt-10">
-        © {new Date().getFullYear()} EdgeCareer. Built with 💡 by Edge Career.
+        © {currentYear} EdgeCareer. Built with 💡 by Edge Career.
       </div>
     </footer>
   );
