@@ -5,7 +5,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -18,10 +17,8 @@ const nextConfig = {
     ],
   },
   webpack: (config) => {
-    config.resolve.alias["@/components"] = path.join(
-      __dirname,
-      "app/components"
-    );
+    const dir = path.dirname(fileURLToPath(import.meta.url));
+    config.resolve.alias["@/components"] = path.join(dir, "app/components");
     return config;
   },
 };
