@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -107,8 +107,25 @@ const AnimatedCounter = ({ value, text, classname }) => {
   );
 };
 
-
 export default function LandingPage() {
+  function getRandomParticles(count = 6) {
+    return [...Array(count)].map(() => ({
+      width: 10 + Math.random() * 20,
+      height: 10 + Math.random() * 20,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      yTo: -100 - Math.random() * 100,
+      xTo: (Math.random() - 0.5) * 50,
+      scaleTo: 1 + Math.random(),
+      duration: 4 + Math.random() * 3,
+    }));
+  }
+
+  const [particles, setParticles] = useState([]);
+  useEffect(() => {
+    setParticles(getRandomParticles(6));
+  }, []);
+
   const { scrollYProgress } = useScroll();
   const featuresRef = useRef(null);
   const howItWorksRef = useRef(null);
@@ -908,30 +925,35 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Animated particles */}
-          {[...Array(6)].map((_, i) => (
+          {/* Animated particles - random values generated on client only */}
+          {particles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute rounded-full bg-white/10"
               style={{
-                width: 10 + Math.random() * 20,
-                height: 10 + Math.random() * 20,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                width: p.width,
+                height: p.height,
+                left: p.left,
+                top: p.top,
               }}
               animate={{
-                y: [0, -100 - Math.random() * 100],
-                x: [0, (Math.random() - 0.5) * 50],
+                y: [0, p.yTo],
+                x: [0, p.xTo],
                 opacity: [0, 0.7, 0],
-                scale: [0, 1 + Math.random(), 0],
+                scale: [0, p.scaleTo, 0],
               }}
               transition={{
-                duration: 4 + Math.random() * 3,
+                duration: p.duration,
                 repeat: Infinity,
                 delay: i * 0.7,
               }}
             />
           ))}
+// ...existing code...
+import React, { useEffect, useLayoutEffect, useState } from "react";
+// ...existing code...
+
+
 
           <motion.div
             className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto relative z-10"
