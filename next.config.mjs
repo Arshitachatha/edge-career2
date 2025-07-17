@@ -1,6 +1,8 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,14 +14,9 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    const dir = path.dirname(fileURLToPath(import.meta.url));
-     // Map "@" to the project root so imports like "@/lib" resolve correctly
-    config.resolve.alias["@"] = dir;
-    // Map components alias explicitl
-    config.resolve.alias["@/components"] = path.resolve(dir, "app/components");
-    return config;
-  },
 };
 
 export default nextConfig;
+
+
+

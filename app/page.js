@@ -949,12 +949,6 @@ export default function LandingPage() {
               }}
             />
           ))}
-// ...existing code...
-import React, { useEffect, useLayoutEffect, useState } from "react";
-// ...existing code...
-
-
-
           <motion.div
             className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto relative z-10"
             variants={staggerContainer}
